@@ -1,1 +1,8 @@
-@import '~materialize-css/sass/materialize.scss';
+@import "~materialize-css/sass/materialize.scss";
+@import "src/Components/Timer.scss";
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
