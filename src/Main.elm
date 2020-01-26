@@ -56,8 +56,6 @@ view model =
     { title = "toast master"
     , body =
         [ Header.view
-        , text "The current URL is: "
-        , b [] [ text (Url.toString model.url) ]
         , Timer.view model
         ]
     }

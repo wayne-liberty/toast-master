@@ -10,8 +10,10 @@ import Url
 type Msg
     = LinkClicked Browser.UrlRequest
     | UrlChanged Url.Url
-    | ToggleTimer
+    | StartTimer
+    | StopTimer
     | Tick Time.Posix
+    | ChangeSpeakerName String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -30,12 +32,28 @@ update msg model =
             , Cmd.none
             )
 
-        ToggleTimer ->
-            ( { model | timerOn = not model.timerOn }
+        StartTimer ->
+            ( { model
+                | duration = 150
+                , timerOn = True
+              }
+            , Cmd.none
+            )
+
+        StopTimer ->
+            ( { model
+                | timerOn = False
+                , records = List.append model.records [ ( model.speakerName, model.duration ) ]
+              }
             , Cmd.none
             )
 
         Tick _ ->
-            ( { model | duration = model.duration + 1 }
+            ( { model | duration = model.duration - 1 }
+            , Cmd.none
+            )
+
+        ChangeSpeakerName name ->
+            ( { model | speakerName = name }
             , Cmd.none
             )

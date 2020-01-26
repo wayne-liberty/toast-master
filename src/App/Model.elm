@@ -9,6 +9,8 @@ type alias Model =
     , url : Url.Url
     , duration : Int
     , timerOn : Bool
+    , speakerName : String
+    , records : List ( String, Int )
     }
 
 
@@ -18,4 +20,6 @@ initModel url key =
     , url = url
     , duration = 1
     , timerOn = False
+    , speakerName = ""
+    , records = []
     }
