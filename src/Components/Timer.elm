@@ -28,9 +28,12 @@ handleClick model =
 
 recordRow : ( String, Int ) -> Html msg
 recordRow ( name, duration ) =
-    li [ class "collection-item container" ]
-        [ div [ class "" ]
-            [ text name, text "              ", text <| String.fromInt <| duration ]
+    li [ class "collection-item" ]
+        [ div []
+            [ b [] [ text name ]
+            , span [] [ text "            " ]
+            , span [] [ text <| String.fromInt <| duration ]
+            ]
         ]
 
 

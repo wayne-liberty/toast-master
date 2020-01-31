@@ -7,6 +7,11 @@ import Time
 import Url
 
 
+tableTopicLimit : Int
+tableTopicLimit =
+    150
+
+
 type Msg
     = LinkClicked Browser.UrlRequest
     | UrlChanged Url.Url
@@ -34,7 +39,7 @@ update msg model =
 
         StartTimer ->
             ( { model
-                | duration = 150
+                | duration = 0
                 , timerOn = True
               }
             , Cmd.none
@@ -49,7 +54,7 @@ update msg model =
             )
 
         Tick _ ->
-            ( { model | duration = model.duration - 1 }
+            ( { model | duration = model.duration + 1 }
             , Cmd.none
             )
 
