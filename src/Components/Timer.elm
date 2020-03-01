@@ -26,13 +26,22 @@ handleClick model =
         StartTimer
 
 
+formatSeconds : Int -> String
+formatSeconds duration =
+    let
+        minutes =
+            duration // 60
+    in
+    String.fromInt minutes ++ " : " ++ String.fromInt (duration - minutes * 60)
+
+
 recordRow : ( String, Int ) -> Html msg
 recordRow ( name, duration ) =
     li [ class "collection-item" ]
         [ div []
             [ b [] [ text name ]
-            , span [] [ text "            " ]
-            , span [] [ text <| String.fromInt <| duration ]
+            , span [] [ text "\t" ]
+            , span [] [ text <| formatSeconds <| duration ]
             ]
         ]
 
@@ -61,7 +70,7 @@ view model =
                     [ text buttonText ]
                 , h2
                     []
-                    [ text (String.fromInt model.duration) ]
+                    [ text (model.speakerName ++ " " ++ formatSeconds model.duration) ]
                 ]
             , ul [ class "collection" ]
                 (List.map recordRow model.records)

@@ -49,6 +49,7 @@ update msg model =
             ( { model
                 | timerOn = False
                 , records = List.append model.records [ ( model.speakerName, model.duration ) ]
+                , speakerName = ""
               }
             , Cmd.none
             )
